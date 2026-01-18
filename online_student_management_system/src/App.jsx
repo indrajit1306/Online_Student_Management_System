@@ -9,6 +9,7 @@ import AdminStudentDirectory from './AdminStudentDirectory';
 
 function App() {
     const [currentView, setCurrentView] = useState('login');
+    console.log('Current View:', currentView);
 
     return (
         <div className="app-container">
@@ -17,7 +18,7 @@ function App() {
             {currentView === 'adminRegister' && <AdminRegister onNavigate={setCurrentView} />}
             {currentView === 'facultyRegister' && <FacultyRegister onNavigate={setCurrentView} />}
             {currentView === 'adminDashboard' && <AdminDashboard onNavigate={setCurrentView} />}
-            {currentView === 'adminStudentList' && <AdminStudentDirectory onNavigate={setCurrentView} />}
+            {currentView === 'studentDirectory' && <AdminStudentDirectory onNavigate={setCurrentView} />}
         </div>
     );
 }

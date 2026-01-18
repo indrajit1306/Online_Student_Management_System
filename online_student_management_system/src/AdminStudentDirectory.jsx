@@ -1,258 +1,250 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    LayoutDashboard, Users, GraduationCap, Settings, LogOut, Search, Bell,
-    ArrowUpRight, UserPlus, BookOpen, Clock, Shield, Download, Filter,
-    MoreVertical, Eye, Edit2, ChevronLeft, ChevronRight, TrendingUp
+    LayoutDashboard, Users, GraduationCap, Settings, BookOpen, BarChart2,
+    Search, Download, Plus, Eye, Edit2, MoreVertical, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import './AdminStudentDirectory.css';
-import './AdminDashboard.css'; // Import dashboard base styles for sidebar
 
 const AdminStudentDirectory = ({ onNavigate }) => {
     // Mock Data
     const students = [
         {
-            id: 1,
-            name: "Marcus Thompson",
-            email: "m.thompson@university.edu",
-            idNumber: "STU-2024-001",
-            dept: "Computer Science",
-            gpa: "3.92",
+            id: 'STU-2024-001',
+            name: 'Marcus Thompson',
+            email: 'm.thompson@university.edu',
+            dept: 'Computer Science',
+            gpa: '3.92',
             attendance: 98,
-            status: "Active",
-            img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
+            status: 'Active',
+            avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60'
         },
         {
-            id: 2,
-            name: "Elena Rodriguez",
-            email: "e.rodriguez@university.edu",
-            idNumber: "STU-2024-042",
-            dept: "Architecture",
-            gpa: "3.75",
+            id: 'STU-2024-042',
+            name: 'Elena Rodriguez',
+            email: 'e.rodriguez@university.edu',
+            dept: 'Architecture',
+            gpa: '3.75',
             attendance: 92,
-            status: "Active",
-            img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop"
+            status: 'Active',
+            avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60'
         },
         {
-            id: 3,
-            name: "Jordan Smith",
-            email: "j.smith@university.edu",
-            idNumber: "STU-2023-112",
-            dept: "Mechanical Eng.",
-            gpa: "2.84",
+            id: 'STU-2023-112',
+            name: 'Jordan Smith',
+            email: 'j.smith@university.edu',
+            dept: 'Mechanical Eng.',
+            gpa: '2.84',
             attendance: 74,
-            status: "Suspended",
-            img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1000&auto=format&fit=crop"
+            status: 'Suspended',
+            avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&auto=format&fit=crop&q=60'
         },
         {
-            id: 4,
-            name: "Aria Chen",
-            email: "a.chen@university.edu",
-            idNumber: "STU-2024-008",
-            dept: "Biochemistry",
-            gpa: "4.00",
+            id: 'STU-2024-008',
+            name: 'Aria Chen',
+            email: 'a.chen@university.edu',
+            dept: 'Biochemistry',
+            gpa: '4.00',
             attendance: 100,
-            status: "Active",
-            img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop"
+            status: 'Active',
+            avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop&q=60'
         },
         {
-            id: 5,
-            name: "Kevin Wu",
-            email: "k.wu@university.edu",
-            idNumber: "STU-2022-581",
-            dept: "Psychology",
-            gpa: "3.12",
+            id: 'STU-2022-581',
+            name: 'Kevin Wu',
+            email: 'k.wu@university.edu',
+            dept: 'Psychology',
+            gpa: '3.12',
             attendance: 45,
-            status: "Inactive",
-            img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop"
+            status: 'Inactive',
+            avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=60'
         }
     ];
 
     const getStatusClass = (status) => {
         switch (status) {
-            case 'Active': return 'status-active';
-            case 'Suspended': return 'status-suspended';
-            case 'Inactive': return 'status-inactive';
+            case 'Active': return 'st-active';
+            case 'Suspended': return 'st-suspended';
+            case 'Inactive': return 'st-inactive';
             default: return '';
         }
     };
 
     const getAttendanceColor = (val) => {
         if (val >= 90) return '#22c55e'; // Green
-        if (val >= 70) return '#f97316'; // Orange
+        if (val >= 75) return '#f59e0b'; // Orange
         return '#ef4444'; // Red
     };
 
     return (
-        <div className="student-dir-container">
-            {/* Sidebar - Copied from Dashboard for consistency since we aren't using a Layout component yet */}
-            <aside className="dashboard-sidebar">
-                <div className="sidebar-brand">
-                    <Shield size={24} className="brand-icon-dash" />
-                    <span>EduAdmin Pro</span>
+        <div className="admin-directory-container">
+            {/* Sidebar */}
+            <aside className="directory-sidebar">
+                <div className="sidebar-logo-area">
+                    <div className="logo-icon-box">
+                        <GraduationCap size={20} />
+                    </div>
+                    <div className="logo-text-col">
+                        <span className="logo-main">EduManage</span>
+                        <span className="logo-sub">Admin Portal</span>
+                    </div>
                 </div>
 
-                <nav className="sidebar-nav">
-                    <a href="#" className="nav-item" onClick={() => onNavigate('adminDashboard')}>
+                <nav className="dir-nav">
+                    <div className="dir-nav-item" onClick={() => onNavigate('adminDashboard')}>
                         <LayoutDashboard size={20} />
-                        <span>Overview</span>
-                    </a>
-                    <a href="#" className="nav-item active">
+                        <span>Dashboard</span>
+                    </div>
+                    <div className="dir-nav-item active">
                         <Users size={20} />
                         <span>Students</span>
-                    </a>
-                    <a href="#" className="nav-item">
+                    </div>
+                    <div className="dir-nav-item">
                         <GraduationCap size={20} />
                         <span>Faculty</span>
-                    </a>
-                    <a href="#" className="nav-item">
+                    </div>
+                    <div className="dir-nav-item">
                         <BookOpen size={20} />
                         <span>Courses</span>
-                    </a>
-                    <a href="#" className="nav-item">
-                        <Settings size={20} />
-                        <span>Settings</span>
-                    </a>
+                    </div>
+                    <div className="dir-nav-item">
+                        <BarChart2 size={20} />
+                        <span>Reports</span>
+                    </div>
                 </nav>
 
-                <div className="sidebar-footer">
-                    <button className="logout-btn" onClick={() => onNavigate('login')}>
-                        <LogOut size={20} />
-                        <span>Sign Out</span>
-                    </button>
+                <div className="dir-settings">
+                    <div className="dir-nav-item">
+                        <Settings size={20} />
+                        <span>Settings</span>
+                    </div>
                 </div>
             </aside>
 
             {/* Main Content */}
-            <main className="dir-main">
+            <main className="directory-main">
                 <header className="dir-header">
-                    <div className="dir-header-title">
-                        <h2>Student Directory</h2>
+                    <div className="dir-title">
+                        <h1>Student Directory</h1>
                         <p>Manage and monitor all enrolled students in the system.</p>
                     </div>
-                    <div className="dir-header-actions">
+                    <div className="header-actions-grp">
                         <button className="btn-export">
-                            <Download size={16} /> Export CSV
+                            <Download size={18} /> Export CSV
                         </button>
                         <button className="btn-add-student">
-                            <UserPlus size={18} /> Add New Student
+                            <Plus size={18} /> Add New Student
                         </button>
                     </div>
                 </header>
 
-                <div className="dir-content">
-                    {/* Stats Grid */}
-                    <div className="dir-stats-grid">
-                        <div className="dir-stat-card">
-                            <div className="dir-stat-info">
-                                <h4>Total Students</h4>
-                                <h2>2,540</h2>
-                            </div>
-                            <span className="dir-stat-badge">+12%</span>
-                        </div>
-                        <div className="dir-stat-card">
-                            <div className="dir-stat-info">
-                                <h4>Active Today</h4>
-                                <h2>2,310</h2>
-                            </div>
-                            <span className="dir-stat-meta">91% Attendance</span>
-                        </div>
-                        <div className="dir-stat-card">
-                            <div className="dir-stat-info">
-                                <h4>Average GPA</h4>
-                                <h2>3.42</h2>
-                            </div>
-                            <div style={{ color: '#38bdf8', display: 'flex', alignItems: 'center', fontSize: '0.8rem', fontWeight: 700 }}>
-                                <TrendingUp size={16} style={{ marginRight: '4px' }} /> +0.1
-                            </div>
+                {/* Stats Row */}
+                <div className="stats-row">
+                    <div className="stat-box">
+                        <span className="stat-label-kp">Total Students</span>
+                        <div className="stat-value-kp">
+                            2,540
+                            <span className="stat-badge badge-green">+12%</span>
                         </div>
                     </div>
-
-                    {/* Filter Bar */}
-                    <div className="filter-bar">
-                        <div className="search-input-wrapper">
-                            <Search size={18} />
-                            <input type="text" placeholder="Search by student name, ID or email..." />
+                    <div className="stat-box">
+                        <span className="stat-label-kp">Active Today</span>
+                        <div className="stat-value-kp">
+                            2,310
+                            <span className="stat-badge badge-subtle">91% Attendance</span>
                         </div>
-                        <select className="filter-select">
-                            <option>Department: All</option>
-                            <option>Computer Science</option>
-                            <option>Architecture</option>
-                        </select>
-                        <select className="filter-select">
-                            <option>Year: 2024</option>
-                            <option>2023</option>
-                            <option>2022</option>
-                        </select>
-                        <select className="filter-select">
-                            <option>Status: Active</option>
-                            <option>Inactive</option>
-                            <option>Suspended</option>
-                        </select>
                     </div>
+                    <div className="stat-box">
+                        <span className="stat-label-kp">Average GPA</span>
+                        <div className="stat-value-kp">
+                            3.42
+                            <span className="stat-badge badge-blue">↗ +0.1</span>
+                        </div>
+                    </div>
+                </div>
 
-                    {/* Table */}
-                    <div className="table-container">
-                        <table className="student-table">
-                            <thead>
-                                <tr>
-                                    <th className="checkbox-cell"><input type="checkbox" className="custom-checkbox" /></th>
-                                    <th>Student Name</th>
-                                    <th>ID Number</th>
-                                    <th>Department</th>
-                                    <th>GPA</th>
-                                    <th>Attendance</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {students.map((student) => (
-                                    <tr key={student.id}>
-                                        <td className="checkbox-cell"><input type="checkbox" className="custom-checkbox" /></td>
-                                        <td>
-                                            <div className="student-cell">
-                                                <img src={student.img} alt={student.name} className="student-avatar" />
-                                                <div className="student-details">
-                                                    <span className="student-name">{student.name}</span>
-                                                    <span className="student-email">{student.email}</span>
-                                                </div>
+                {/* Filters */}
+                <div className="filter-bar">
+                    <div className="search-field">
+                        <Search size={18} />
+                        <input type="text" placeholder="Search by student name, ID or email..." />
+                    </div>
+                    <select className="filter-select"><option>Department: All</option></select>
+                    <select className="filter-select"><option>Year: 2024</option></select>
+                    <select className="filter-select"><option>Status: Active</option></select>
+                </div>
+
+                {/* Table */}
+                <div className="table-container">
+                    <table className="student-table">
+                        <thead>
+                            <tr>
+                                <th className="checkbox-col"><input type="checkbox" /></th>
+                                <th>Student Name</th>
+                                <th>ID Number</th>
+                                <th>Department</th>
+                                <th>GPA</th>
+                                <th>Attendance</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {students.map((student, idx) => (
+                                <tr key={idx}>
+                                    <td><input type="checkbox" /></td>
+                                    <td>
+                                        <div className="student-info-cell">
+                                            <img src={student.avatar} alt="" className="student-avatar" />
+                                            <div className="student-text">
+                                                <span className="st-name">{student.name}</span>
+                                                <span className="st-email">{student.email}</span>
                                             </div>
-                                        </td>
-                                        <td className="id-cell">{student.idNumber}</td>
-                                        <td>{student.dept}</td>
-                                        <td style={{ fontWeight: 700 }}>{student.gpa}</td>
-                                        <td>
-                                            <div className="attendance-bar-container">
+                                        </div>
+                                    </td>
+                                    <td className="id-cell">{student.id}</td>
+                                    <td>{student.dept}</td>
+                                    <td className="gpa-cell">{student.gpa}</td>
+                                    <td>
+                                        <div className="attendance-wrapper">
+                                            <div className="att-bar-bg">
                                                 <div
-                                                    className="attendance-fill"
+                                                    className="att-bar-fill"
                                                     style={{ width: `${student.attendance}%`, backgroundColor: getAttendanceColor(student.attendance) }}
                                                 ></div>
                                             </div>
-                                            <span className="attendance-text" style={{ color: getAttendanceColor(student.attendance) }}>{student.attendance}%</span>
-                                        </td>
-                                        <td>
-                                            <span className={`status-badge ${getStatusClass(student.status)}`}>{student.status}</span>
-                                        </td>
-                                        <td className="actions-cell">
-                                            <button className="action-icon-btn"><Eye size={18} /></button>
-                                            <button className="action-icon-btn"><Edit2 size={18} /></button>
-                                            <button className="action-icon-btn"><MoreVertical size={18} /></button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                            <span
+                                                className="att-text"
+                                                style={{ color: getAttendanceColor(student.attendance) }}
+                                            >
+                                                {student.attendance}%
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span className={`status-badge ${getStatusClass(student.status)}`}>
+                                            {student.status}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div className="actions-cell">
+                                            <Eye size={18} className="action-icon" />
+                                            <Edit2 size={18} className="action-icon" />
+                                            <MoreVertical size={18} className="action-icon" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
-                    {/* Pagination */}
-                    <div className="pagination-area">
-                        <span className="showing-text">Showing <strong>1</strong> to <strong>5</strong> of <strong>2,540</strong> students</span>
-                        <div className="pagination-controls">
-                            <button className="page-btn disabled"><ChevronLeft size={16} /></button>
+                    <div className="pagination-container">
+                        <span className="page-info">Showing <strong>1</strong> to <strong>5</strong> of <strong>2,540</strong> students</span>
+                        <div className="page-controls">
+                            <button className="page-btn"><ChevronLeft size={16} /></button>
                             <button className="page-btn active">1</button>
                             <button className="page-btn">2</button>
                             <button className="page-btn">3</button>
-                            <span style={{ color: '#64748b' }}>...</span>
+                            <span className="page-btn" style={{ border: 'none' }}>...</span>
                             <button className="page-btn">508</button>
                             <button className="page-btn"><ChevronRight size={16} /></button>
                         </div>
