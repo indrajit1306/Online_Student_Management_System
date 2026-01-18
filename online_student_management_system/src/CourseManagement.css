@@ -1,0 +1,543 @@
+/* CourseManagement.css - Extending global layouts */
+.course-management-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* We reuse .directory-sidebar and .dashboard-main styles from previous CSS files 
+   by importing them or assuming they are available globally if bundled, 
+   but since CSS modules aren't used, we might need to duplicate or rely on global scope. 
+   To be safe and self-contained, I will include necessary specific styles.
+*/
+
+.course-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Top Navigation Bar (Header) */
+.cm-header {
+    height: 70px;
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.cm-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.cm-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.global-search {
+    position: relative;
+    width: 300px;
+}
+
+.global-search input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.global-search svg {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.icon-btn-notification {
+    background: #f1f5f9;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748b;
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.user-profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-text {
+    text-align: right;
+}
+
+.user-name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.user-role {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.user-avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+    overflow: hidden;
+}
+
+/* Content Body */
+.cm-content {
+    padding: 2rem;
+}
+
+/* Page Title & Add Button */
+.cm-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.cm-page-title h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.cm-page-title p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.btn-add-course {
+    background-color: #2563eb;
+    /* Royal Blue */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-add-course:hover {
+    background-color: #1d4ed8;
+}
+
+/* Filters & Search Toolbar */
+.cm-toolbar {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    margin-bottom: 1.5rem;
+}
+
+.toolbar-top {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-course-input {
+    flex: 1;
+    position: relative;
+}
+
+.search-course-input input {
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.search-course-input svg {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.btn-filter,
+.btn-export-cm {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    border-radius: 0.5rem;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-filter:hover,
+.btn-export-cm:hover {
+    background-color: #f8fafc;
+}
+
+.tag-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag-pill {
+    padding: 0.4rem 0.8rem;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #f1f5f9;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.tag-pill.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.tag-pill:hover:not(.active) {
+    background-color: #e2e8f0;
+}
+
+/* Course Table */
+.course-table-wrapper {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    /* For rounded corners */
+}
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-table th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    background-color: #f8fafc;
+    color: #64748b;
+    /* Slate 500 */
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.course-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.course-row:hover {
+    background-color: #fafbfc;
+}
+
+/* Column Specifics */
+.course-info h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.course-code-text {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.2rem;
+}
+
+.dept-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.dept-cs {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.dept-math {
+    background-color: #faf5ff;
+    color: #a855f7;
+    border-color: #e9d5ff;
+}
+
+.dept-bus {
+    background-color: #fff7ed;
+    color: #ea580c;
+    border-color: #fed7aa;
+}
+
+.faculty-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.faculty-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.faculty-name {
+    font-size: 0.9rem;
+    color: #334155;
+    font-weight: 500;
+}
+
+.student-count {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 0.95rem;
+}
+
+.status-badge-course {
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.status-active {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-inactive {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.dot-active {
+    width: 6px;
+    height: 6px;
+    background-color: #166534;
+    border-radius: 50%;
+}
+
+.dot-inactive {
+    width: 6px;
+    height: 6px;
+    background-color: #94a3b8;
+    border-radius: 50%;
+}
+
+.action-btns {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Pagination Footer - Reusing similar styles or custom */
+.cm-pagination-footer {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+/* Sidebar Support Button */
+.sidebar-support-btn {
+    margin: 1.5rem;
+    margin-top: auto;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.sidebar-support-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Added Dropdown Profile Styles (Consolidated with AdminDashboard) */
+.user-profile-mini {
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.user-profile-mini:hover {
+    background-color: #f1f5f9;
+}
+
+/* Reuse the same dropdown structure classes */
+.profile-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 280px;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    z-index: 50;
+    overflow: hidden;
+    animation: fadeIn 0.1s ease-out;
+}
+
+.dropdown-header {
+    background-color: #f8fafc;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dropdown-avatar-large {
+    width: 64px;
+    height: 64px;
+    background-color: #bfdbfe;
+    color: #1e3a8a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1rem auto;
+}
+
+.dropdown-name {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+}
+
+.dropdown-role {
+    display: block;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.dropdown-info-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+.info-row svg {
+    color: #94a3b8;
+}
+
+.dropdown-footer {
+    padding: 0.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.dropdown-logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.dropdown-logout-btn:hover {
+    background-color: #fef2f2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
