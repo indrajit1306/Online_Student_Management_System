@@ -1,50 +1,130 @@
 /* AdminStudentDirectory.css */
-/* Reusing common dashboard styles from AdminDashboard.css where possible, 
-   but defining specific student directory styles here */
-
-.student-dir-container {
+.admin-directory-container {
     display: flex;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
-    background-color: #f1f5f9;
+    background-color: #f8fafc;
 }
 
-/* Inherit Sidebar from AdminDashboard */
-/* Note: We will use the same sidebar HTML structure, styles are in AdminDashboard.css */
+/* Sidebar (Deep Blue Theme) */
+.directory-sidebar {
+    width: 260px;
+    background-color: #1e3a8a;
+    /* Deep Blue from Dashboard */
+    color: white;
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
 
-/* Main Content Area */
-.dir-main {
+.sidebar-logo-area {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-icon-box {
+    width: 32px;
+    height: 32px;
+    background-color: #3b82f6;
+    /* Blue 500 */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo-text-col {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-main {
+    font-weight: 800;
+    font-size: 1rem;
+    color: white;
+}
+
+.logo-sub {
+    font-size: 0.75rem;
+    color: #bfdbfe;
+}
+
+.dir-nav {
+    padding: 1.5rem 1rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    gap: 0.5rem;
 }
 
-.dir-header {
-    height: 80px;
-    background-color: white;
-    border-bottom: 1px solid #e2e8f0;
+.dir-nav-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #bfdbfe;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    cursor: pointer;
 }
 
-.dir-header-title h2 {
-    font-size: 1.5rem;
+.dir-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.dir-nav-item.active {
+    background-color: #2563eb;
+    /* Active Blue */
+    color: white;
+    border-right: none;
+    font-weight: 600;
+}
+
+.dir-settings {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content */
+.directory-main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Header Section */
+.dir-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.dir-title h1 {
+    font-size: 1.75rem;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
-.dir-header-title p {
+.dir-title p {
     color: #64748b;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
-.dir-header-actions {
+.header-actions-grp {
     display: flex;
-    align-items: center;
     gap: 1rem;
 }
 
@@ -53,18 +133,13 @@
     align-items: center;
     gap: 0.5rem;
     background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
     color: #334155;
-    padding: 0.6rem 1rem;
+    border: none;
+    padding: 0.75rem 1.25rem;
     border-radius: 0.5rem;
     font-weight: 600;
-    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-export:hover {
-    background-color: #e2e8f0;
+    font-size: 0.9rem;
 }
 
 .btn-add-student {
@@ -72,103 +147,94 @@
     align-items: center;
     gap: 0.5rem;
     background-color: #22d3ee;
-    /* Cyan 400 */
-    color: #0f172a;
+    /* Cyan/Sky */
+    color: white;
     border: none;
-    padding: 0.6rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     border-radius: 0.5rem;
     font-weight: 700;
-    font-size: 0.9rem;
     cursor: pointer;
+    font-size: 0.9rem;
     box-shadow: 0 4px 6px -1px rgba(34, 211, 238, 0.3);
-    transition: all 0.2s;
 }
 
-.btn-add-student:hover {
-    background-color: #06b6d4;
-    transform: translateY(-1px);
-}
-
-
-/* Stats Row */
-.dir-content {
-    padding: 2rem;
-}
-
-.dir-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* Stats Cards */
+.stats-row {
+    display: flex;
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.dir-stat-card {
+.stat-box {
+    flex: 1;
     background-color: white;
     padding: 1.5rem;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
 }
 
-.dir-stat-info h4 {
+.stat-label-kp {
+    font-size: 0.85rem;
     color: #64748b;
-    font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
-.dir-stat-info h2 {
-    font-size: 2.25rem;
+.stat-value-kp {
+    font-size: 2rem;
     font-weight: 800;
     color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.dir-stat-badge {
-    background-color: #dcfce7;
-    color: #166534;
-    font-size: 0.8rem;
+.stat-badge {
+    font-size: 0.75rem;
     font-weight: 700;
-    padding: 0.25rem 0.6rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 0.375rem;
 }
 
-.dir-stat-meta {
-    font-size: 0.8rem;
+.badge-green {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-blue {
+    color: #0ea5e9;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badge-subtle {
+    font-size: 0.75rem;
     color: #94a3b8;
     font-weight: 500;
 }
 
-/* Filter Bar */
+/* Filters */
 .filter-bar {
-    background-color: white;
-    /* Or transparent if preferred, but image usually implies clear container */
-    /* To match image accurately, it might just be inputs/selects in a row */
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
-.search-input-wrapper {
-    flex: 2;
-    /* Takes more space */
+.search-field {
+    flex: 1;
     position: relative;
-}
-
-.search-input-wrapper input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.75rem;
     background-color: #f8fafc;
-    /* Very light gray */
-    border: 1px solid #f1f5f9;
-    /* Subtle border */
     border-radius: 0.5rem;
-    font-size: 0.95rem;
-    color: #334155;
 }
 
-.search-input-wrapper svg {
+.search-field svg {
     position: absolute;
     left: 1rem;
     top: 50%;
@@ -176,29 +242,33 @@
     color: #94a3b8;
 }
 
+.search-field input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 1px solid #f1f5f9;
+    background: transparent;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+}
+
 .filter-select {
-    flex: 1;
     padding: 0.75rem 1rem;
     background-color: #f8fafc;
     border: 1px solid #f1f5f9;
     border-radius: 0.5rem;
-    font-size: 0.95rem;
     color: #334155;
+    font-weight: 500;
+    font-size: 0.9rem;
     cursor: pointer;
-    /* Custom chevron typically requires background-image or wrapper, native select for simplicity */
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
+    min-width: 140px;
 }
 
 /* Table */
 .table-container {
     background-color: white;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    margin-bottom: 2rem;
 }
 
 .student-table {
@@ -207,12 +277,12 @@
 }
 
 .student-table th {
-    background-color: #f8fafc;
     text-align: left;
     padding: 1rem 1.5rem;
+    background-color: #f8fafc;
+    color: #64748b;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #64748b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 1px solid #e2e8f0;
@@ -221,34 +291,16 @@
 .student-table td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #f1f5f9;
-    vertical-align: middle;
-    font-size: 0.9rem;
     color: #334155;
+    font-size: 0.9rem;
+    vertical-align: middle;
 }
 
-.student-table tr:last-child td {
-    border-bottom: none;
-}
-
-.student-table tr:hover {
-    background-color: #f8fafc;
-}
-
-/* Custom Checkbox */
-.checkbox-cell {
+.checkbox-col {
     width: 40px;
 }
 
-.custom-checkbox {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #cbd5e1;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Student Info Cell */
-.student-cell {
+.student-info-cell {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -261,18 +313,17 @@
     object-fit: cover;
 }
 
-.student-details {
-    display: flex;
-    flex-direction: column;
+.student-text span {
+    display: block;
 }
 
-.student-name {
+.st-name {
     font-weight: 700;
     color: #0f172a;
     font-size: 0.95rem;
 }
 
-.student-email {
+.st-email {
     font-size: 0.8rem;
     color: #64748b;
 }
@@ -282,47 +333,56 @@
     color: #475569;
 }
 
+.gpa-cell {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.attendance-wrapper {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.att-bar-bg {
+    width: 100%;
+    height: 4px;
+    background-color: #e2e8f0;
+    border-radius: 2px;
+}
+
+.att-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+}
+
+.att-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: right;
+}
+
 .status-badge {
     padding: 0.25rem 0.75rem;
     border-radius: 99px;
     font-size: 0.75rem;
     font-weight: 700;
-    display: inline-block;
 }
 
-.status-active {
+.st-active {
     background-color: #dcfce7;
     color: #166534;
 }
 
-.status-suspended {
-    background-color: #fef9c3;
-    color: #854d0e;
-    /* Yellow-brown */
-}
-
-.status-inactive {
+.st-inactive {
     background-color: #f1f5f9;
     color: #64748b;
 }
 
-.attendance-bar-container {
-    width: 100px;
-    height: 4px;
-    background-color: #e2e8f0;
-    border-radius: 2px;
-    margin-bottom: 0.25rem;
-    overflow: hidden;
-}
-
-.attendance-fill {
-    height: 100%;
-    border-radius: 2px;
-}
-
-.attendance-text {
-    font-size: 0.75rem;
-    font-weight: 700;
+.st-suspended {
+    background-color: #fef9c3;
+    color: #854d0e;
 }
 
 .actions-cell {
@@ -330,39 +390,35 @@
     gap: 0.5rem;
 }
 
-.action-icon-btn {
-    border: none;
-    background: none;
+.action-icon {
     color: #94a3b8;
     cursor: pointer;
-    padding: 0.25rem;
     transition: color 0.2s;
 }
 
-.action-icon-btn:hover {
-    color: #334155;
+.action-icon:hover {
+    color: #0ea5e9;
 }
 
 /* Pagination */
-.pagination-area {
+.pagination-container {
+    padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.5rem;
 }
 
-.showing-text {
+.page-info {
     font-size: 0.9rem;
     color: #64748b;
 }
 
-.showing-text strong {
+.page-info strong {
     color: #0f172a;
 }
 
-.pagination-controls {
+.page-controls {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
 }
 
@@ -373,28 +429,39 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #e2e8f0;
-    background-color: white;
+    background: white;
     border-radius: 0.375rem;
     cursor: pointer;
-    color: #64748b;
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.page-btn:hover {
-    background-color: #f8fafc;
-    color: #0f172a;
+    color: #64748b;
 }
 
 .page-btn.active {
     background-color: #22d3ee;
+    color: white;
     border-color: #22d3ee;
-    color: #0f172a;
     font-weight: 700;
 }
 
-.page-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+@media (max-width: 1024px) {
+    .directory-sidebar {
+        width: 70px;
+    }
+
+    .logo-text-col,
+    .dir-nav-item span,
+    .dir-title p {
+        display: none;
+    }
+
+    .directory-main {
+        padding: 1rem;
+    }
+
+    .student-table th:nth-child(4),
+    .student-table td:nth-child(4) {
+        display: none;
+    }
+
+    /* Hide Dept on tablet */
 }
