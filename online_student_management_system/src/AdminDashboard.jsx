@@ -16,26 +16,26 @@ const AdminDashboard = ({ onNavigate }) => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <a href="#" className="nav-item active">
+                    <div className="nav-item active">
                         <LayoutDashboard size={20} />
                         <span>Overview</span>
-                    </a>
-                    <a href="#" className="nav-item" onClick={() => onNavigate('adminStudentList')}>
+                    </div>
+                    <div className="nav-item" onClick={() => { console.log('Navigating to directory'); onNavigate('studentDirectory'); }}>
                         <Users size={20} />
                         <span>Students</span>
-                    </a>
-                    <a href="#" className="nav-item">
+                    </div>
+                    <div className="nav-item">
                         <GraduationCap size={20} />
                         <span>Faculty</span>
-                    </a>
-                    <a href="#" className="nav-item">
+                    </div>
+                    <div className="nav-item">
                         <BookOpen size={20} />
                         <span>Courses</span>
-                    </a>
-                    <a href="#" className="nav-item">
+                    </div>
+                    <div className="nav-item">
                         <Settings size={20} />
                         <span>Settings</span>
-                    </a>
+                    </div>
                 </nav>
 
                 <div className="sidebar-footer">
