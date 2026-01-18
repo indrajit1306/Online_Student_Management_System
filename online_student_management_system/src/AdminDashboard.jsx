@@ -20,7 +20,7 @@ const AdminDashboard = ({ onNavigate }) => {
                         <LayoutDashboard size={20} />
                         <span>Overview</span>
                     </a>
-                    <a href="#" className="nav-item">
+                    <a href="#" className="nav-item" onClick={() => onNavigate('adminStudentList')}>
                         <Users size={20} />
                         <span>Students</span>
                     </a>
