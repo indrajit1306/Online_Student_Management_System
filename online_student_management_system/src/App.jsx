@@ -5,6 +5,7 @@ import Register from './Register';
 import AdminRegister from './AdminRegister';
 import FacultyRegister from './FacultyRegister';
 import AdminDashboard from './AdminDashboard';
+import AdminStudentDirectory from './AdminStudentDirectory';
 
 function App() {
     const [currentView, setCurrentView] = useState('login');
@@ -16,6 +17,7 @@ function App() {
             {currentView === 'adminRegister' && <AdminRegister onNavigate={setCurrentView} />}
             {currentView === 'facultyRegister' && <FacultyRegister onNavigate={setCurrentView} />}
             {currentView === 'adminDashboard' && <AdminDashboard onNavigate={setCurrentView} />}
+            {currentView === 'adminStudentList' && <AdminStudentDirectory onNavigate={setCurrentView} />}
         </div>
     );
 }
