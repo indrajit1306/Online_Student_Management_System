@@ -1,0 +1,526 @@
+/* StudentAttendance.css */
+.attendance-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* Reuse global layout for main area */
+.attendance-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+/* Breadcrumbs & Header */
+.att-breadcrumbs {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.att-breadcrumbs span {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.att-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.att-title h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.att-title p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.att-header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-white-outline {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-primary-blue {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* Grid Layout for Content */
+.attendance-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* LEFT COLUMN */
+.att-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Filter Card */
+.att-filters-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.filter-select,
+.filter-date {
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: #f8fafc;
+    font-size: 0.95rem;
+    color: #334155;
+    outline: none;
+}
+
+/* Student List Section */
+.att-list-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.att-list-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.att-list-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.quick-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.toggle-bg {
+    background-color: #f1f5f9;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    display: flex;
+}
+
+.toggle-btn {
+    border: none;
+    background: none;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.toggle-btn.active {
+    background-color: white;
+    color: #0f172a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Table Headers */
+.att-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 3fr;
+    padding: 1rem 1.5rem;
+    background-color: #fff;
+    border-bottom: 1px solid #f1f5f9;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Student Row */
+.att-student-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 3fr;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #f8fafc;
+    align-items: center;
+}
+
+.att-student-row:last-child {
+    border-bottom: none;
+}
+
+.att-student-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.att-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* random gradients handled in JS or via classes */
+}
+
+.att-name-col h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.att-meta {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.att-id {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-family: monospace;
+}
+
+/* Radio Group */
+.att-status-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #334155;
+}
+
+.radio-label input {
+    accent-color: #2563eb;
+    width: 16px;
+    height: 16px;
+}
+
+/* Specifically styling the accent colors roughly */
+.radio-present input {
+    accent-color: #2563eb;
+}
+
+.radio-absent input {
+    accent-color: #cbd5e1;
+}
+
+/* Just generic, browser handling varies */
+.radio-late input {
+    accent-color: #f59e0b;
+}
+
+.load-more-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* RIGHT COLUMN */
+.att-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.summary-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.summary-title {
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Circular Progress Mockup */
+.circle-chart {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 12px solid #eff6ff;
+    border-top: 12px solid #2563eb;
+    border-right: 12px solid #2563eb;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-val {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.chart-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-top: 0.2rem;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.mini-stat {
+    background-color: #f8fafc;
+    padding: 1rem 0.5rem;
+    border-radius: 0.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ms-val {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.ms-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+.text-blue {
+    color: #2563eb;
+}
+
+.text-red {
+    color: #ef4444;
+}
+
+.text-orange {
+    color: #f59e0b;
+}
+
+/* Watchlist Card */
+.watchlist-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.watchlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.wl-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.badge-attention {
+    background-color: #fef2f2;
+    color: #ef4444;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.watchlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.watchlist-item:last-child {
+    border-bottom: none;
+}
+
+.wl-user-info {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.wl-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #e2e8f0;
+    border-radius: 0.3rem;
+    /* Square-ish per image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-details h5 {
+    font-size: 0.9rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.wl-details span {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.wl-action {
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.view-report-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Calendar Card */
+.calendar-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.cal-day-name {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.cal-date {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    color: #334155;
+    border-radius: 0.3rem;
+}
+
+.cal-date.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .attendance-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     LayoutDashboard, Users, GraduationCap, Settings, LogOut, Search, Bell,
-    ArrowUpRight, UserPlus, BookOpen, Clock, Shield
+    ArrowUpRight, UserPlus, BookOpen, Clock, Shield,
+    BarChart3, Calendar
 } from 'lucide-react';
 import './AdminDashboard.css';
 
-const AdminDashboard = ({ onNavigate }) => {
+const AdminDashboard = ({ onNavigate, userData }) => {
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
+
     return (
         <div className="admin-dashboard-container">
             {/* Sidebar */}
@@ -28,9 +31,17 @@ const AdminDashboard = ({ onNavigate }) => {
                         <GraduationCap size={20} />
                         <span>Faculty</span>
                     </div>
-                    <div className="nav-item">
+                    <div className="nav-item" onClick={() => onNavigate('courseManagement')}>
                         <BookOpen size={20} />
                         <span>Courses</span>
+                    </div>
+                    <div className="nav-item">
+                        <BarChart3 size={20} />
+                        <span>Reports</span>
+                    </div>
+                    <div className="nav-item" onClick={() => onNavigate('studentAttendance')}>
+                        <Calendar size={20} />
+                        <span>Attendance</span>
                     </div>
                     <div className="nav-item">
                         <Settings size={20} />
@@ -58,12 +69,44 @@ const AdminDashboard = ({ onNavigate }) => {
                             <input type="text" placeholder="Search..." />
                         </div>
                         <Bell size={20} color="#64748b" style={{ cursor: 'pointer' }} />
-                        <div className="header-profile">
+
+                        <div className="header-profile" onClick={() => setShowProfileMenu(!showProfileMenu)}>
                             <div className="profile-info">
-                                <span className="profile-name">Dr. Sarah J.</span>
-                                <span className="profile-role">Super Admin</span>
+                                <span className="profile-name">{onNavigate.userData?.name || userData?.name || 'Dr. Sarah J.'}</span>
+                                <span className="profile-role">{onNavigate.userData?.role || userData?.role || 'Super Admin'}</span>
                             </div>
-                            <div className="profile-avatar">SJ</div>
+                            <div className="profile-avatar">
+                                {onNavigate.userData?.name ? onNavigate.userData.name.charAt(0) : (userData?.name ? userData.name.charAt(0) : 'SJ')}
+                            </div>
+
+                            {/* Dropdown Menu */}
+                            {showProfileMenu && (
+                                <div className="profile-dropdown-menu" onClick={(e) => e.stopPropagation()}>
+                                    <div className="dropdown-header">
+                                        <div className="dropdown-avatar-large">
+                                            {onNavigate.userData?.name ? onNavigate.userData.name.charAt(0) : (userData?.name ? userData.name.charAt(0) : 'SJ')}
+                                        </div>
+                                        <span className="dropdown-name">{onNavigate.userData?.name || userData?.name || 'Dr. Sarah J.'}</span>
+                                        <span className="dropdown-role">{onNavigate.userData?.role || userData?.role || 'Super Admin'}</span>
+                                    </div>
+                                    <div className="dropdown-info-list">
+                                        <div className="info-row">
+                                            <span style={{ fontWeight: 600 }}>ID:</span> {userData?.id || 'ADM-001-X'}
+                                        </div>
+                                        <div className="info-row">
+                                            <span style={{ fontWeight: 600 }}>Email:</span> {userData?.email || 'admin@edu.com'}
+                                        </div>
+                                        <div className="info-row">
+                                            <span style={{ fontWeight: 600 }}>Dept:</span> {userData?.department || 'Administration'}
+                                        </div>
+                                    </div>
+                                    <div className="dropdown-footer">
+                                        <button className="dropdown-logout-btn" onClick={() => onNavigate('login')}>
+                                            <LogOut size={16} /> Sign Out
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </header>

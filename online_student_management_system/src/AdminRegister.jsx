@@ -3,10 +3,15 @@ import { ShieldCheck, Lock, UserPlus, Info, CheckCircle, BarChart, Eye, EyeOff, 
 import { GraduationCap } from 'lucide-react';
 import './AdminRegister.css';
 
-const AdminRegister = ({ onNavigate }) => {
+const AdminRegister = ({ onNavigate, setUserData }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     const [strength, setStrength] = useState(0);
+
+    // Form States
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [department, setDepartment] = useState('Information Technology');
 
     const calculateStrength = (pwd) => {
         let score = 0;
@@ -24,6 +29,20 @@ const AdminRegister = ({ onNavigate }) => {
         const val = e.target.value;
         setPassword(val);
         setStrength(calculateStrength(val));
+    };
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        // Save user data
+        if (setUserData) {
+            setUserData({
+                name: fullName || 'Admin User',
+                email: email || 'admin@edu.com',
+                role: 'System Administrator',
+                department: department
+            });
+        }
+        onNavigate('adminDashboard');
     };
 
     const getStrengthColor = (score) => {
@@ -117,14 +136,24 @@ const AdminRegister = ({ onNavigate }) => {
                     <p>Enter your institutional credentials to gain system access.</p>
                 </div>
 
-                <form className="admin-form-grid" onSubmit={(e) => e.preventDefault()}>
+                <form className="admin-form-grid" onSubmit={handleRegister}>
                     <div className="form-field">
                         <label>Full Name</label>
-                        <input type="text" placeholder="e.g. Dr. Sarah Jenkins" />
+                        <input
+                            type="text"
+                            placeholder="e.g. Dr. Sarah Jenkins"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                        />
                     </div>
                     <div className="form-field">
                         <label>Institutional Email</label>
-                        <input type="email" placeholder="admin@university.edu" />
+                        <input
+                            type="email"
+                            placeholder="admin@university.edu"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
 
                     <div className="form-field">
@@ -133,7 +162,7 @@ const AdminRegister = ({ onNavigate }) => {
                     </div>
                     <div className="form-field">
                         <label>Department</label>
-                        <select>
+                        <select value={department} onChange={(e) => setDepartment(e.target.value)}>
                             <option>Information Technology</option>
                             <option>Registrar's Office</option>
                             <option>Human Resources</option>
@@ -200,7 +229,7 @@ const AdminRegister = ({ onNavigate }) => {
                         <p style={{ fontSize: '0.75rem', color: '#94a3b8', fontStyle: 'italic', marginTop: '0.25rem' }}>Include uppercase, numbers, and symbols.</p>
                     </div>
 
-                    <button type="submit" className="register-submit-btn full-span" onClick={() => onNavigate('adminDashboard')}>
+                    <button type="submit" className="register-submit-btn full-span">
                         Register Admin Account <UserPlus size={18} />
                     </button>
 

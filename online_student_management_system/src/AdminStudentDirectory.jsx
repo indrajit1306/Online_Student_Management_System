@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {
     LayoutDashboard, Users, GraduationCap, Settings, BookOpen, BarChart2,
-    Search, Download, Plus, Eye, Edit2, MoreVertical, ChevronLeft, ChevronRight
+    Search, Download, Plus, Eye, Edit2, MoreVertical, ChevronLeft, ChevronRight,
+    Calendar1
 } from 'lucide-react';
 import './AdminStudentDirectory.css';
 
-const AdminStudentDirectory = ({ onNavigate }) => {
+const AdminStudentDirectory = ({ onNavigate, userData }) => {
     // Mock Data
     const students = [
         {
@@ -92,7 +93,7 @@ const AdminStudentDirectory = ({ onNavigate }) => {
                 <nav className="dir-nav">
                     <div className="dir-nav-item" onClick={() => onNavigate('adminDashboard')}>
                         <LayoutDashboard size={20} />
-                        <span>Dashboard</span>
+                        <span>Overview</span>
                     </div>
                     <div className="dir-nav-item active">
                         <Users size={20} />
@@ -102,13 +103,18 @@ const AdminStudentDirectory = ({ onNavigate }) => {
                         <GraduationCap size={20} />
                         <span>Faculty</span>
                     </div>
-                    <div className="dir-nav-item">
+                    <div className="dir-nav-item" onClick={() => onNavigate('courseManagement')}>
                         <BookOpen size={20} />
                         <span>Courses</span>
                     </div>
                     <div className="dir-nav-item">
                         <BarChart2 size={20} />
                         <span>Reports</span>
+                    </div>
+
+                    <div className="dir-nav-item" onClick={() => onNavigate('studentAttendance')}>
+                        <Calendar1 size={20} />
+                        <span>Attendance</span>
                     </div>
                 </nav>
 
@@ -227,7 +233,7 @@ const AdminStudentDirectory = ({ onNavigate }) => {
                                     </td>
                                     <td>
                                         <div className="actions-cell">
-                                            <Eye size={18} className="action-icon" />
+                                            <Eye size={18} className="action-icon" onClick={() => onNavigate('studentProfile')} />
                                             <Edit2 size={18} className="action-icon" />
                                             <MoreVertical size={18} className="action-icon" />
                                         </div>
